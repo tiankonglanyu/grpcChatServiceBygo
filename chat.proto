@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package chat_server;
+
+
+option go_package = "/chatserver"; // 声明包的名字， 默认会在 命令行  --go-grpc_out 之后创建这个目录的包
+
+message FormClient{
+    string name = 1;
+    string body = 2;
+
+}
+
+
+message FromServer{
+    string name = 1;
+    string body = 2;
+
+}
+
+
+service Services{
+
+    rpc ChatService(stream FormClient) returns (stream FromServer){ };   //
+}
